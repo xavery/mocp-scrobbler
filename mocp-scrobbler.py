@@ -430,10 +430,9 @@ def main():
     if kill: return
 
     config = SafeConfigParser()
-
-    try:
-        config.read(configpath)
-    except:
+    config.read(configpath)
+    
+    if not config.has_section('scrobbler'):
         print('Not configured. Edit file: %s' % configpath, file=sys.stderr)
         return 1
 
