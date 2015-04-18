@@ -436,7 +436,7 @@ def main():
         print('Not configured. Edit file: %s' % configpath, file=sys.stderr)
         return 1
 
-    getter = lambda k, f: config.get('scrobbler', k) if config.has_option('scrobbler', k) else f
+    getter = lambda k, f: config.get('scrobbler', k, raw=True if k == 'password' else False) if config.has_option('scrobbler', k) else f
 
     login = getter('login', None)
     password = getter('password', None)
